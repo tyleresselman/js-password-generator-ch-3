@@ -16,6 +16,7 @@ generateBtn.addEventListener("click", writePassword);
 function generatePassword() {
 
   var characterBank = "";
+  // var guaranteedChar = "";
   var yourPassword = "";
 
   // WHEN I click the button to generate a password
@@ -36,43 +37,53 @@ function generatePassword() {
       console.log(characterBank);
     } else {
       alert("Sorry, the password length has to be at least 8 characters and no more than 128.");
+      return null;
     }
 
     if (upperCase) {
       characterBank = characterBank + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      // guaranteedChar = guaranteedChar + getRandom(characterBank);
     }
 
-    console.log(characterBank);
+    // console.log(characterBank);
 
     if (lowerCase) {
       characterBank = characterBank + "abcdefghijklmnopqrstuvwxyz";
+      // guaranteedChar = guaranteedChar + getRandom(characterBank);
     }
 
-    console.log(characterBank);
+    // console.log(characterBank);
 
     if (wantNumbers) {
       characterBank = characterBank + "1234567890";
+      // guaranteedChar = guaranteedChar + getRandom(characterBank);
     }
 
-    console.log(characterBank);
+    // console.log(characterBank);
 
     if (specialChar) {
       characterBank = characterBank + "!@#$%^&*?><~";
+      // guaranteedChar = guaranteedChar + getRandom(characterBank);
     }
 
     if ((!upperCase) && (!lowerCase) && (!wantNumbers) && (!specialChar)) {
       alert("Sorry, you need to pick at least one character category. Try again.");
-      generatePassword();
+      return null;
     }
 
+    function getRandom(str) {
+      var randomIndex = Math.floor(Math.random()*str.length);
+      var randomChar = str.charAt(randomIndex);
+      // console.log(randomChar);
+      return randomChar;
+    } 
+  
+
     for(var i = 0; i < parseInt(howLong); i++) {
-      var randomIndex = Math.floor(Math.random()*characterBank.length);
-      // console.log(randomIndex);
-      var randomCharacter = characterBank[randomIndex];
-      // console.log(randomCharacter);
-      yourPassword = yourPassword + randomCharacter;
+      yourPassword = yourPassword + getRandom(characterBank);
       // console.log(yourPassword);
     }
+  
 
     return (yourPassword);
 
